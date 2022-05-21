@@ -5,11 +5,11 @@
     displayManager = {
       sddm.enable = true;
       session = [
-      {
-        manage = "desktop";
-        name = "xsession";
-        start = "source $HOME/.xsession";
-      }
+        {
+          manage = "desktop";
+          name = "xsession";
+          start = "source $HOME/.xsession";
+        }
       ];
     };
   };

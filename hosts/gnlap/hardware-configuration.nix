@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
@@ -14,36 +15,42 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
+    {
+      device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
       fsType = "btrfs";
       options = [ "ssd" "compress=zstd:1" "noatime" "subvol=@" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/39B7-18F6";
+    {
+      device = "/dev/disk/by-uuid/39B7-18F6";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
+    {
+      device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
       fsType = "btrfs";
       options = [ "ssd" "noatime" "compress=zstd:1" "subvol=@home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
+    {
+      device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
       fsType = "btrfs";
       options = [ "ssd" "compress=zstd:1" "noatime" "subvol=@nix" ];
     };
 
   fileSystems."/bhl" =
-    { device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
+    {
+      device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
       fsType = "btrfs";
       options = [ "ssd" "noatime" "nodatacow" "nodatasum" "subvol=@bhl" ];
     };
 
   fileSystems."/var/lib/postgresql" =
-    { device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
+    {
+      device = "/dev/disk/by-uuid/1b5e4973-8baa-4d3b-b3c0-5e9696e5da6b";
       fsType = "btrfs";
       options = [ "ssd" "noatime" "nodatacow" "nodatasum" "subvol=@postgres" ];
     };

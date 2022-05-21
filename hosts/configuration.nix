@@ -1,17 +1,18 @@
 { config, lib, pkgs, inputs, user, location, ... }:
 
 {
-  users.users.${user} = {                   # System User
+  users.users.${user} = {
+    # System User
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
-    shell = pkgs.bash;                       # Default shell
+    shell = pkgs.bash; # Default shell
   };
   security.sudo.wheelNeedsPassword = false; # User does not need to give password when using sudo.
 
   networking.hostName = "gnlap"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  time.timeZone = "America/Chicago";        # Time zone and internationalisation
+  time.timeZone = "America/Chicago"; # Time zone and internationalisation
   i18n = {
     defaultLocale = "en_US.UTF-8";
   };
@@ -22,15 +23,17 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  fonts.fonts = with pkgs; [                # Fonts
-    carlito                                 # NixOS
-    vegur                                   # NixOS
+  fonts.fonts = with pkgs; [
+    # Fonts
+    carlito # NixOS
+    vegur # NixOS
     nerdfonts
     source-code-pro
     jetbrains-mono
-    font-awesome                            # Icons
-    corefonts                               # MS
-    (nerdfonts.override {                   # Nerdfont Icons override
+    font-awesome # Icons
+    corefonts # MS
+    (nerdfonts.override {
+      # Nerdfont Icons override
       fonts = [
         "FiraCode"
       ];
@@ -55,7 +58,8 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
-    systemPackages = with pkgs; [           # Default packages install system-wide
+    systemPackages = with pkgs; [
+      # Default packages install system-wide
       #internet
       firefox
       brave
@@ -82,8 +86,6 @@
       neovim
       tree-sitter
       nodePackages.markdownlint-cli
-      xclip # operate system clipboard
-      wl-clipboard #wl-copy wl-paste for wayland
 
       # dotfiles
       chezmoi
@@ -110,6 +112,8 @@
       sxhkd
       flameshot
       blueberry # bluetooth configuration
+      xclip # operate system clipboard
+      wl-clipboard #wl-copy wl-paste for wayland
 
       # filesystem
       ripgrep
@@ -138,10 +142,13 @@
       automake
       git
       go_1_18
+      gopls
       rustup
+      rust-analyzer
       gcc
       binutils
       nerdfonts
+      rnix-lsp # lsp for nix
 
       # periferals
       xf86_input_wacom
@@ -155,14 +162,14 @@
       keychain
     ];
   };
-  
+
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
 
-# Enable the OpenSSH daemon.
+  # Enable the OpenSSH daemon.
   services = {
     xserver = {
       desktopManager.plasma5.enable = true;
@@ -186,13 +193,14 @@
         '';
       };
     };
-    openssh = {                             # SSH
+    openssh = {
+      # SSH
       enable = true;
       allowSFTP = true;
     };
     sshd.enable = true;
-    flatpak.enable = true;                  # download flatpak file from website - sudo flatpak install <path> - reboot if not showing up
-                                              # sudo flatpak uninstall --delete-data <app-id> (> flatpak list --app) - flatpak uninstall --unused
+    flatpak.enable = true; # download flatpak file from website - sudo flatpak install <path> - reboot if not showing up
+    # sudo flatpak uninstall --delete-data <app-id> (> flatpak list --app) - flatpak uninstall --unused
   };
 
   services.postgresql = {
@@ -211,21 +219,24 @@
     '';
   };
 
-  xdg.portal = {                            # Required for flatpak
+  xdg.portal = {
+    # Required for flatpak
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  nix = {                                   # Nix Package Manager settings
-    settings ={
-      auto-optimise-store = true;           # Optimise syslinks
+  nix = {
+    # Nix Package Manager settings
+    settings = {
+      auto-optimise-store = true; # Optimise syslinks
     };
-    gc = {                                  # Automatic garbage collection
+    gc = {
+      # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nixFlakes;               # Enable nixFlakes on system
+    package = pkgs.nixFlakes; # Enable nixFlakes on system
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -233,10 +244,12 @@
       keep-derivations      = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
+  nixpkgs.config.allowUnfree = true; # Allow proprietary software.
 
-  system = {                                # NixOS settings
-    autoUpgrade = {                         # Allow auto update
+  system = {
+    # NixOS settings
+    autoUpgrade = {
+      # Allow auto update
       enable = true;
       channel = "https://nixos.org/channels/nixos-unstable";
     };
