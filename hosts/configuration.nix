@@ -9,6 +9,7 @@
   security.sudo.wheelNeedsPassword = false; # User does not need to give password when using sudo.
 
   networking.hostName = "gnlap"; # Define your hostname.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   time.timeZone = "America/Chicago";        # Time zone and internationalisation
   i18n = {
@@ -59,11 +60,15 @@
       firefox
       brave
       tdesktop # telegram-desktop
+      wget
 
       # system
       killall
       pciutils
       usbutils
+
+      # networking
+      networkmanager
 
       # databases
       postgresql_14
@@ -82,9 +87,6 @@
 
       # dotfiles
       chezmoi
-
-      # fetchers
-      wget
 
       # sound
       pavucontrol
@@ -162,7 +164,18 @@
 
 # Enable the OpenSSH daemon.
   services = {
-    xserver.desktopManager.plasma5.enable = true;
+    xserver = {
+      desktopManager.plasma5.enable = true;
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput = {
+        enable = true;
+        touchpad = {
+          naturalScrolling = true;
+          disableWhileTyping = true;
+          tapping = false;
+        };
+      };
+    };
     snapper.configs = {
       home = {
         subvolume = "/home";
