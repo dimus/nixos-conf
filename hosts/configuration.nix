@@ -38,7 +38,15 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+  };
+  hardware.pulseaudio.enable = false;
 
   environment = {
     variables = {
@@ -155,7 +163,6 @@
 # Enable the OpenSSH daemon.
   services = {
     xserver.desktopManager.plasma5.enable = true;
-    pipewire.enable = true;
     snapper.configs = {
       home = {
         subvolume = "/home";
