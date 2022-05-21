@@ -24,6 +24,7 @@
   fonts.fonts = with pkgs; [                # Fonts
     carlito                                 # NixOS
     vegur                                   # NixOS
+    nerdfonts
     source-code-pro
     jetbrains-mono
     font-awesome                            # Icons
@@ -153,6 +154,7 @@
 
 # Enable the OpenSSH daemon.
   services = {
+    xserver.desktopManager.plasma5.enable = true;
     pipewire.enable = true;
     snapper.configs = {
       home = {
