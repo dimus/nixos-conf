@@ -3,8 +3,7 @@
 {
   imports =                                     # For now, if applying to other system, swap files
     [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-    [(import ../../modules/gnlap/qtile/qtile.nix)] ++   # Window Manager
-    (import ../../modules/hardware);                      # Hardware devices
+    [(import ../../modules/gnlap/qtile/qtile.nix)];       # Window Manager
 
   boot = {                                      # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
