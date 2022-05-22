@@ -70,6 +70,7 @@
       killall
       pciutils
       usbutils
+      comma # run command without install
 
       # networking
       networkmanager
