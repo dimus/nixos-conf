@@ -113,6 +113,7 @@
 
       # window manager
       qtile
+      lm_sensors # to get `sensors` to see temperature tags
       dmenu
       nitrogen
       sway
@@ -161,6 +162,7 @@
       nerdfonts
       rnix-lsp # lsp for nix
       bundix
+      python39Packages.pylsp-mypy # lsp for python
 
       # periferals
       xf86_input_wacom
