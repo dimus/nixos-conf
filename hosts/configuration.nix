@@ -64,11 +64,22 @@
       brave
       tdesktop # telegram-desktop
       wget
+      
+      # documents
+      pandoc
+      texlive.combined.scheme-full
+      zathura
+      jq
 
       # system
       killall
       pciutils
       usbutils
+      ansible
+      
+      # nix
+      nix-index
+      comma
 
       # networking
       networkmanager
@@ -149,6 +160,7 @@
       binutils
       nerdfonts
       rnix-lsp # lsp for nix
+      bundix
 
       # periferals
       xf86_input_wacom
