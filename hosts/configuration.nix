@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, user, location, ... }:
+{ config, lib, pkgs, inputs, user, host, location, ... }:
 
 {
   users.users.${user} = {
@@ -9,7 +9,7 @@
   };
   security.sudo.wheelNeedsPassword = false; # User does not need to give password when using sudo.
 
-  networking.hostName = "gnlap"; # Define your hostname.
+  networking.hostName = "${host}"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "America/Chicago"; # Time zone and internationalisation

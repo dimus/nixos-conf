@@ -21,4 +21,14 @@ in
       ./configuration.nix
     ];
   };
+  gna = lib.nixosSystem {
+    # Desktop profile
+    inherit system;
+    specialArgs = { inherit inputs user location; }; # Pass flake variable
+    modules = [
+      # Modules that are used.
+      ./gnlap
+      ./configuration.nix
+    ];
+  };
 }

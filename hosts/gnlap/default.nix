@@ -1,9 +1,13 @@
 { config, pkgs, lib, user, ... }:
+let
+  host = "gnlap";
 
+in
 {
   imports = # For now, if applying to other system, swap files
     [
       (import ./hardware-configuration.nix) # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+      (import ../configuration.nix)
       (import ../../modules/gnlap/qtile/qtile.nix)
       (import ../../modules/gnlap/sway/sway.nix)
     ]; # Window Manager
