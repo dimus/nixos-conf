@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, user, host, location, ... }:
+{ config, lib, pkgs, inputs, user, location, ... }:
 
 {
   users.users.${user} = {
@@ -9,7 +9,6 @@
   };
   security.sudo.wheelNeedsPassword = false; # User does not need to give password when using sudo.
 
-  networking.hostName = "${host}"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "America/Chicago"; # Time zone and internationalisation
@@ -116,6 +115,7 @@
       wl-clipboard #wl-copy wl-paste for wayland
 
       # filesystem
+      ntfs3g
       ripgrep
       fd
       broot

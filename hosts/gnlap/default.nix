@@ -7,7 +7,6 @@ in
   imports = # For now, if applying to other system, swap files
     [
       (import ./hardware-configuration.nix) # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-      (import ../configuration.nix)
       (import ../../modules/gnlap/qtile/qtile.nix)
       (import ../../modules/gnlap/sway/sway.nix)
     ]; # Window Manager
@@ -28,6 +27,7 @@ in
       timeout = 1; # Grub auto select time
     };
   };
+  networking.hostName = "gnlap"; # Define your hostname.
 
   hardware.sane = {
     # Used for scanning with Xsane
