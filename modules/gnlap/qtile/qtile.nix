@@ -3,7 +3,10 @@
   services.xserver = {
     windowManager.qtile.enable = true;
     displayManager = {
-      sddm.enable = true;
+      sddm = {
+        enable = true;
+        theme = "maya";
+      };
       session = [
         {
           manage = "desktop";

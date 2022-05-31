@@ -110,9 +110,14 @@
       mpv
       imv
       zoom-us
+      transmission
+      transmission-qt
 
       # window manager
       qtile
+      wlroots
+      python39Packages.pywlroots
+      wlr-randr
       lm_sensors # to get `sensors` to see temperature tags
       dmenu
       nitrogen
@@ -125,6 +130,7 @@
       blueberry # bluetooth configuration
       xclip # operate system clipboard
       wl-clipboard #wl-copy wl-paste for wayland
+      handlr
 
       # filesystem
       ntfs3g
