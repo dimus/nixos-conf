@@ -139,7 +139,7 @@
       broot
       du-dust
       rsync
-      snapper
+      # snapper
 
       # art
       blender

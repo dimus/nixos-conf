@@ -5,7 +5,7 @@
     displayManager = {
       sddm = {
         enable = true;
-        theme = "maya";
+        # theme = "maya";
       };
       session = [
         {
