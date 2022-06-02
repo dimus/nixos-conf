@@ -11,7 +11,7 @@
 
   inputs = # All flake references used to build my NixOS setup. These are dependencies.
     {
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05"; # Nix Packages
     };
 
   outputs = inputs @ { self, nixpkgs, ... }: # Function that tells my flake which to use and what do what to do with the dependencies.
