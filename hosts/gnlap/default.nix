@@ -29,17 +29,25 @@ in
   };
   networking.hostName = "gnlap"; # Define your hostname.
 
-  hardware.sane = {
-    # Used for scanning with Xsane
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
+  users.users.${user} = {
+    # set gnlap specific groups
+    extraGroups = [
+      "audio"
+      "camera"
+      "docker"
+      "kvm"
+      "libvirtd"
+      "lp"
+      "networkmanager"
+      "video"
+      "wheel"
+    ];
   };
 
   environment = {
     # Packages installed system wide
     systemPackages = with pkgs; [
       # This is because some options need to be configured.
-      simple-scan
       x11vnc
       wacomtablet
       appimage-run
@@ -67,9 +75,10 @@ in
     xserver = {
       # In case, multi monitor support
       enable = true;
-      # videoDrivers = [                          # Video Settings
-      #   "intelgpu"
-      # ];
+      videoDrivers = [
+        # Video Settings
+        "intelgpu"
+      ];
 
       modules = [ pkgs.xf86_input_wacom ]; # Both needed for wacom tablet usage
       wacom.enable = true;

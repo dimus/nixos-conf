@@ -4,9 +4,11 @@
   users.users.${user} = {
     # System User
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
+    # extraGroups are set for each machine
+    # extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
     shell = pkgs.bash; # Default shell
   };
+
   security.sudo.wheelNeedsPassword = false; # User does not need to give password when using sudo.
 
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -22,20 +24,17 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  # fonts must be registered here
   fonts.fonts = with pkgs; [
     # Fonts
     carlito # NixOS
     vegur # NixOS
-    nerdfonts
     source-code-pro
-    jetbrains-mono
     font-awesome # Icons
     corefonts # MS
     (nerdfonts.override {
-      # Nerdfont Icons override
-      fonts = [
-        "FiraCode"
-      ];
+      # select specific fonts from nerdfonts
+      fonts = [ "FiraCode" "FiraMono" "Go-Mono" "Hack" "JetBrainsMono" ];
     })
   ];
 
@@ -64,7 +63,7 @@
       brave
       tdesktop # telegram-desktop
       wget
-      
+
       # documents
       pandoc
       texlive.combined.scheme-full
@@ -76,7 +75,7 @@
       pciutils
       usbutils
       ansible
-      
+
       # nix
       nix-index
       comma
@@ -165,7 +164,6 @@
       rust-analyzer
       gcc
       binutils
-      nerdfonts
       rnix-lsp # lsp for nix
       bundix
       python39Packages.pylsp-mypy # lsp for python
